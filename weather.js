@@ -26,7 +26,6 @@ function insertRecord(result) {
 function getWeather(){
 
     suggestionsBox.innerHTML = ""
-
     const city = searchBox.value;
     const code = searchBox.dataset.code
     if (city.trim().length > 0){
