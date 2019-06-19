@@ -13,27 +13,14 @@
     <main>
         <h1>Weather Checker</h1>
         <form class="form">
-            <span>
+            <span class='search-box'>
                 <input type="text" name="search" id="search" class="search" placeholder="Type city name here">
-                <button class="gobtn">Go</button>
+                <button type="button" class="gobtn">Go</button>
             </span>
             <ul class="suggestions"></ul>
         </form>
 
-        <section class='results'>
-            <div class='result'>
-                <span class="city">London, GB</span>
-                <span class='desc'>
-                    <span class="desc">Drizzle</span>
-                    <img class="icon" src="./10d.png" alt="?">
-                </span>
-                <span class="temp">Temperature : 280.32°C</span>
-                <span class="min-temp">Min: 210°C</span>
-                <span class="max-temp">Max: 278°C</span>
-                <span class="pressure">Pressure: 100 hPa</span>
-                <span class="humidity">Humidity: 90 %</span>
-            </div>
-        </section>
+        <section class='results'></section>
     </main>
 
 

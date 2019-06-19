@@ -21,9 +21,10 @@ h1 {
 .form {
     max-width: 600px;
     margin: auto;
+    position: relative;
 }
 
-.form span {
+.search-box {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -68,26 +69,36 @@ h1 {
     width: 100%;
     font-size: 1.8em;
     list-style: none;
+    position: absolute;
 }
 
 .suggestions > li {
-    background: rgba(255, 255, 255, 0.911);
+    background: rgba(255, 255, 255);
     color: rgba(2, 2, 2, 0.87);
     margin-bottom: 1px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     box-shadow: 0px -10px 40px inset rgb(180, 180, 180);
     border-radius: 5px;
+    width: 400px;
+    transform: translateX(50px);
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.suggestions > li:hover {
+    background: red;
+}
+
+.hl {
+    background: rgba(250, 250, 93, 0.911);
 }
 
 .results {
     margin: 1em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .result {

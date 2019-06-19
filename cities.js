@@ -1,25 +1,82 @@
-// // Get a List of cities to generate dropdown menu
+// Get a List of cities to generate dropdown menu
 
-// // URL for Fetch request
-// const citiesURL = 'https://raw.githubusercontent.com/meMo-Minsk/all-countries-and-cities-json/master/countries.json'
+// URL for Fetch request
+const citiesURL =
+    "https://raw.githubusercontent.com/meMo-Minsk/all-countries-and-cities-json/master/countries.json";
+// The list of cities we build
+const cityList = [];
+// The searchbar element
+const search = document.querySelector(".search");
+// The ul element to display list
+const suggestions = document.querySelector(".suggestions");
 
-// const cityList = []
+fetch(citiesURL)
+    .then(blob => blob.json())
+    .then(data => {
+        const keys = Object.keys(data);
+        keys.forEach(key => {
+            // const countryList = data[key]
+            const countryList = [...new Set(data[key])];
+            if (key === "United States") {
+                key = "United States Of America";
+            }
+            let code = null;
+            fetch(`https://restcountries.eu/rest/v2/name/${key}?fullText=true&fields=alpha2Code`)
+                .then(blob => blob.json())
+                .then(data => {
+                    if (data[0]) code = data[0].alpha2Code;
+                }).then(() => {
+                    countryList.forEach(city => {
+                        cityList.push({
+                            name: city,
+                            country: key,
+                            code: code
+                        });
+                    });
+                })
+        });
+    });
 
-// // Get the list
-// fetch(citiesURL)
-//     .then(blob => blob.json())
-//     .then(data => {
-//         const keys = Object.keys(data)
-//         keys.forEach(key => {
-//             const countryList = data[key]
-//             countryList.forEach(city => {
-//                 cityList.push({
-//                     name: city,
-//                     country: key
-//                 })
-//             })
-//         })
-//     })
+function findMatches(wordToFind, cities) {
+    const regex = new RegExp(wordToFind, "gi");
+    return cities.filter(
+        city => city.name.match(regex) || city.country.match(regex)
+    );
+}
 
+function displayMatches() {
+    if (this.value.trim().length > 3) {
+        const places = findMatches(this.value, cityList);
+        // console.log(places);
+        suggestions.innerHTML = places
+            .map(place => {
+                const regex = new RegExp(this.value, "gi");
+                const city = place.name.replace(
+                    regex,
+                    `<span class="hl">${this.value}</span>`
+                );
+                const country = place.country.replace(
+                    regex,
+                    `<span class="hl">${this.value}</span>`
+                );
+                return `<li data-code="${place.code}" id="${
+                    place.name
+                }">${city}, ${country}</li>`;
+            })
+            .join("");
+    }
 
+    const items = document.querySelectorAll(".suggestions li");
+    if (items) {
+        items.forEach(item => item.addEventListener("click", clickEvent));
+    }
+}
 
+function clickEvent() {
+    search.value = this.id;
+    search.dataset.code = this.dataset.code
+    suggestions.innerHTML = "";
+}
+
+search.addEventListener("keyup", displayMatches);
+search.addEventListener("change", displayMatches);
