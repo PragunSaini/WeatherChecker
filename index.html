@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Checker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main>
+        <h1>Weather Checker</h1>
+        <form class="form">
+            <span>
+                <input type="text" name="search" id="search" class="search" placeholder="Type city name here">
+                <button class="gobtn">Go</button>
+            </span>
+            <ul class="suggestions"></ul>
+        </form>
+
+        <section class='results'>
+            <div class='result'>
+                <span class="city">London, GB</span>
+                <span class='desc'>
+                    <span class="desc">Drizzle</span>
+                    <img class="icon" src="./10d.png" alt="?">
+                </span>
+                <span class="temp">Temperature : 280.32°C</span>
+                <span class="min-temp">Min: 210°C</span>
+                <span class="max-temp">Max: 278°C</span>
+                <span class="pressure">Pressure: 100 hPa</span>
+                <span class="humidity">Humidity: 90 %</span>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script src="weather.js"></script>
+    <script src="cities.js"></script>
+</body>
+</html>

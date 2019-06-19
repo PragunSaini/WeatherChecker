@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: rgb(170, 241, 226);
+}
+
+main {
+    padding-top: 2em;
+    min-width: 100%;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 0.7em;
+    font-size: 3em;
+}
+
+.form {
+    max-width: 600px;
+    margin: auto;
+}
+
+.form span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* transform: translateX(-60px); */
+}
+
+.form input {
+    outline: 0;
+    font-size: 2em;
+    width: 85%;
+    height: 1.5em;
+    border: 5px solid rgba(66, 156, 230, 0.822);
+    padding: 0.2em;
+    text-align: center;
+    transition: all 0.1s;
+}
+
+.form input:focus {
+    border: 5px solid rgba(10, 135, 236, 0.822);
+}
+
+.form .gobtn {
+    outline: none;
+    border: none;
+    margin-left: 0.5em;
+    width: 3em;
+    height: 2em;
+    font-size: 1.5em;
+    background-color: rgb(17, 17, 184);
+    color: white;
+    /* border: 1px solid white; */
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 3px rgba(0,0,0,0.75);
+    transition: all 0.01s;
+}
+
+.form .gobtn:active {
+    box-shadow: 5px 5px 2px 3px rgba(0,0,0,0.75);
+}
+
+.suggestions {
+    width: 100%;
+    font-size: 1.8em;
+    list-style: none;
+}
+
+.suggestions > li {
+    background: rgba(255, 255, 255, 0.911);
+    color: rgba(2, 2, 2, 0.87);
+    margin-bottom: 1px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px -10px 40px inset rgb(180, 180, 180);
+    border-radius: 5px;
+}
+
+.results {
+    margin: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.result {
+    background: white;
+    box-shadow: 10px 11px 18px -3px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    margin: 1em;
+    padding: 1em 0.5em;
+    max-width: 400px;
+}
+
+.result > * {
+    display: inline-block;
+    width: 100%;
+}
+
+.city {
+    font-size: 1.5em;
+}
+
+.desc {
+    font-size: 1.6em;
+}
+
+.temp {
+    font-size: 1.3em;
+    font-weight: 500;
+    text-shadow: 1px 1px rgba(143, 143, 143, 0.705);
+}
+
+.min-temp, .max-temp, .pressure, .humidity {
+    font-size: 1.2em;
+    font-weight: 500;
+    text-shadow: 1px 1px rgb(143, 143, 143);
+}
