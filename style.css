@@ -70,25 +70,40 @@ h1 {
     font-size: 1.8em;
     list-style: none;
     position: absolute;
+    max-height: 500px;
+    max-width: 450px;
+    overflow: auto;
+    transform: translateX(50px);
+    z-index: 10;
 }
 
 .suggestions > li {
     background: rgba(255, 255, 255);
     color: rgba(2, 2, 2, 0.87);
-    margin-bottom: 1px;
+    /* margin-bottom: 1px; */
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    box-shadow: 0px -10px 40px inset rgb(180, 180, 180);
     border-radius: 5px;
-    width: 400px;
-    transform: translateX(50px);
+    width: 100%;
     font-size: 1em;
     cursor: pointer;
 }
 
-.suggestions > li:hover {
-    background: red;
+.suggestions > li:nth-child(even) {
+    box-shadow: 0px -10px 40px inset rgb(118, 235, 83),
+                0px 10px 40px inset rgb(118, 235, 83);
 }
+
+.suggestions > li:nth-child(odd) {
+    box-shadow: 0px -10px 40px inset rgb(252, 122, 122),
+                0px 10px 40px inset rgb(252, 122, 122);
+}
+
+.suggestions > li:hover {
+    box-shadow: 0px -10px 50px inset rgb(91, 100, 179),
+                0px 10px 50px inset rgb(91, 100, 179);
+}
+
 
 .hl {
     background: rgba(250, 250, 93, 0.911);
@@ -98,16 +113,23 @@ h1 {
     margin: 1em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: start;
 }
 
 .result {
+    box-sizing: border-box;
     background: white;
     box-shadow: 10px 11px 18px -3px rgba(0,0,0,0.75);
     border-radius: 10px;
     margin: 1em;
     padding: 1em 0.5em;
-    max-width: 400px;
+    width: 31%;
+    transition: all 0.2s;
+}
+
+.result:hover {
+    box-shadow: 10px 11px 5px -3px rgba(0,0,0,0.75);
+    transform: scale(1.05);
 }
 
 .result > * {
@@ -133,4 +155,88 @@ h1 {
     font-size: 1.2em;
     font-weight: 500;
     text-shadow: 1px 1px rgb(143, 143, 143);
+}
+
+
+@media screen and (max-width: 1400px) {
+
+    .result {
+        width: 30%;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+    .result {
+        width: 45%;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    .result {
+        width: 44%;
+    }
+
+    .search-box {
+        width: 80%;
+        margin: auto;
+    }
+
+    .form input {
+        width: 85%;
+        font-size: 1.5em;
+    }
+
+    .form .gobtn {
+        width: 5em;
+    }
+
+    .suggestions {
+        max-width: 50%;
+        transform: translateX(100px);
+        font-size: 1.3em;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .result {
+        width: 90%;
+    }
+
+    .results {
+        margin: 1em 5px;
+    }
+
+    .search-box {
+        margin: auto;
+        width: 95%;
+    }
+
+    .form input {
+        padding: 1px;
+        width: 85%;
+        font-size: 1.4em;
+    }
+
+    .form .gobtn {
+        font-size: 1em;
+        /* width: 3em;
+        height: 2em; */
+    }
+
+    .suggestions {
+        max-width: 50%;
+        transform: translateX(100px);
+        font-size: 1.3em;
+    }
+
 }

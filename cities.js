@@ -10,12 +10,13 @@ const search = document.querySelector(".search");
 // The ul element to display list
 const suggestions = document.querySelector(".suggestions");
 
+// Get the list
 fetch(citiesURL)
     .then(blob => blob.json())
     .then(data => {
+        // For each country
         const keys = Object.keys(data);
         keys.forEach(key => {
-            // const countryList = data[key]
             const countryList = [...new Set(data[key])];
             if (key === "United States") {
                 key = "United States Of America";
@@ -25,7 +26,8 @@ fetch(citiesURL)
                 .then(blob => blob.json())
                 .then(data => {
                     if (data[0]) code = data[0].alpha2Code;
-                }).then(() => {
+                })
+                .finally(() => {
                     countryList.forEach(city => {
                         cityList.push({
                             name: city,
@@ -47,7 +49,6 @@ function findMatches(wordToFind, cities) {
 function displayMatches() {
     if (this.value.trim().length > 3) {
         const places = findMatches(this.value, cityList);
-        // console.log(places);
         suggestions.innerHTML = places
             .map(place => {
                 const regex = new RegExp(this.value, "gi");
@@ -68,11 +69,11 @@ function displayMatches() {
 
     const items = document.querySelectorAll(".suggestions li");
     if (items) {
-        items.forEach(item => item.addEventListener("click", clickEvent));
+        items.forEach(item => item.addEventListener('click', clickEvent));
     }
 }
 
-function clickEvent() {
+function clickEvent(e) {
     search.value = this.id;
     search.dataset.code = this.dataset.code
     suggestions.innerHTML = "";

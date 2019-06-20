@@ -25,16 +25,15 @@ function insertRecord(result) {
 
 function getWeather(){
 
-    suggestionsBox.innerHTML = ""
     const city = searchBox.value;
     const code = searchBox.dataset.code
+    suggestionsBox.innerHTML = ""
+    searchBox.value = ""
     if (city.trim().length > 0){
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${code}&units=metric&appid=${apiKey}`
-        // console.log(url)
         fetch(url)
             .then(blob => blob.json())
             .then(data => {
-                // console.log(data)
                 let res = []
                 res.push(data.name)
                 res.push(data.sys.country)
@@ -47,9 +46,22 @@ function getWeather(){
                 res.push(data.main.humidity)
 
                 insertRecord(res)
-                searchBox.value = ""
+            })
+            .catch((e) => {
+                alert("Sorry, we can't fetch the data for that city")
             })
     }
 }
 
 btn.addEventListener('click', getWeather)
+searchBox.addEventListener('keyup', checkEnter)
+
+function clearSuggestions() {
+    suggestionsBox.innerHTML = "";
+}
+
+function checkEnter(e) {
+    if (e.keyCode == 13){
+        getWeather()
+    }
+}
