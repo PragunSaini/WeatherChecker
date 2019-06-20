@@ -39,6 +39,8 @@ fetch(citiesURL)
         });
     });
 
+
+// Function that finds suitable matches to our keyword
 function findMatches(wordToFind, cities) {
     const regex = new RegExp(wordToFind, "gi");
     return cities.filter(
@@ -46,6 +48,7 @@ function findMatches(wordToFind, cities) {
     );
 }
 
+// Find matches from city list and display list items
 function displayMatches() {
     if (this.value.trim().length > 3) {
         const places = findMatches(this.value, cityList);
@@ -67,17 +70,22 @@ function displayMatches() {
             .join("");
     }
 
+    // Add click event listener to each item suggestion
     const items = document.querySelectorAll(".suggestions li");
     if (items) {
         items.forEach(item => item.addEventListener('click', clickEvent));
     }
 }
 
+// Replace text field value with value of suggestion
 function clickEvent(e) {
     search.value = this.id;
     search.dataset.code = this.dataset.code
     suggestions.innerHTML = "";
 }
 
+// Generate suggestions on folllowing event
 search.addEventListener("keyup", displayMatches);
 search.addEventListener("change", displayMatches);
+
+

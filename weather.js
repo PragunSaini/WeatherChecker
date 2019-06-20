@@ -1,9 +1,12 @@
+// Page elements
 const resBox = document.querySelector('.results')
 const searchBox = document.querySelector('.search')
 const btn = document.querySelector('.gobtn')
-const apiKey = 'd80b051bb7bf18027d13a11e1ef14f55';
 const suggestionsBox = document.querySelector('.suggestions')
+// API KEY
+const apiKey = 'd80b051bb7bf18027d13a11e1ef14f55';
 
+// INSERTS a weather record on the page
 function insertRecord(result) {
     const template = `
         <div class='result'>
@@ -22,9 +25,8 @@ function insertRecord(result) {
         resBox.innerHTML = template + resBox.innerHTML
 }
 
-
+// Fetches the weather report from the API
 function getWeather(){
-
     const city = searchBox.value;
     const code = searchBox.dataset.code
     suggestionsBox.innerHTML = ""
@@ -53,15 +55,6 @@ function getWeather(){
     }
 }
 
+
+// Gets weather report on button press 
 btn.addEventListener('click', getWeather)
-searchBox.addEventListener('keyup', checkEnter)
-
-function clearSuggestions() {
-    suggestionsBox.innerHTML = "";
-}
-
-function checkEnter(e) {
-    if (e.keyCode == 13){
-        getWeather()
-    }
-}
